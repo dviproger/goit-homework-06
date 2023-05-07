@@ -48,8 +48,6 @@ def normalize(fd_name):
         return normalize_name(fd_name)
 
 
-# def move_files(path_file):
-
 # Функция распаковки архивов
 
 def unpack_archive():
@@ -73,7 +71,7 @@ def delete_oll_empty_folder(path):
             folder_is_empty(dir)
 
 
-# Проверяем заданную для сортировки папку и если она не пустая если она пустая то удаляем ее.
+# Проверяем заданную для сортировки папку  если она не пустая, то сортируем а если она пустая то удаляем ее.
 #
 def folder_is_empty(path_folder):
     try:
@@ -82,8 +80,6 @@ def folder_is_empty(path_folder):
             return True
     except OSError:
         return False
-
-# Функция сортировки файлов и папок
 
 # Функция отчет работы программы
 
@@ -107,6 +103,8 @@ def repotr():
             list_files.clear()
             list_exp.clear()
 
+
+# Функция сортировки файлов и папок
 
 def sort_func(path_f):
     for el in path_f.iterdir():
@@ -163,17 +161,18 @@ def sort_func(path_f):
                     sort_func(el)
 
         except (FileNotFoundError, FileExistsError) as err:
-            print('file Exist error')
+            print(f'file Exist error {err}')
 
 
-    # Проверим введенный аргумент и создадим подкаталоги в указанном каталоге
+# Проверим введенный аргумент и создадим подкаталоги в указанном каталоге
+
 if len(sys.argv) != 2:
     print('Input please argument - path sortering folder')
     quit()
 else:
     Main_wave = sys.argv[1]
     Main_path = Path(Main_wave)
-if folder_is_empty(Main_path):  # проверяем папку если пустая то удалим
+if folder_is_empty(Main_path):
     print('Folder is empty and was removed')
     quit()
 else:
