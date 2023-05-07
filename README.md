@@ -1,2 +1,3 @@
-# goit-homework-01
-home-work
+# goit-homework-06
+
+Программу небходимо усовершенствовать
