@@ -68,11 +68,15 @@ def unpack_archive():
 def delete_oll_empty_folder(path):
     for dir in path.iterdir():
         if dir.is_dir() and (not (dir.name in FOLDER)):
-            folder_is_empty(dir)
+            folder_wave = '\\'.join(dir.parts)
+            try:
+                shutil.rmtree(folder_wave)
+            except OSError:
+                print('delete error folders')
 
 
 # Проверяем заданную для сортировки папку  если она не пустая, то сортируем а если она пустая то удаляем ее.
-#
+
 def folder_is_empty(path_folder):
     try:
         if path_folder.exists():
@@ -108,7 +112,6 @@ def repotr():
 
 def sort_func(path_f):
     for el in path_f.iterdir():
-        delete_oll_empty_folder(el.parent)
         try:
             if el.is_file():
                 path_file = el
@@ -184,5 +187,6 @@ else:
             continue
 
 sort_func(Main_path)
+delete_oll_empty_folder(Main_path)
 unpack_archive()
 repotr()
